@@ -21,7 +21,7 @@ class HttpRequest {
         case FORM = "application/x-www-form-urlencoded"
     }
     
-    private static let Log = Logger(toString(HttpRequest))
+    private static let Log = Logger(String(HttpRequest))
     
     private let request : NSURLRequest
     private let encoding : NSStringEncoding
@@ -50,7 +50,7 @@ class HttpRequest {
         let task = NSURLSession.sharedSession().dataTaskWithRequest(self.request) { (data, response, error) in
             HttpRequest.Log.info("http request completed..")
             if (error != nil) {
-                HttpRequest.Log.error("failed with error: \(error.localizedDescription)")
+                HttpRequest.Log.error("failed with error: \(error!.localizedDescription)")
                 completionHandler(nil, error)
                 return
             }

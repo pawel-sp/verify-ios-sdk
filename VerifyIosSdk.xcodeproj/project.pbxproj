@@ -102,6 +102,8 @@
 		2AE0DE711B80F937008C308F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0DE6F1B80F937008C308F /* SearchResponse.swift */; };
 		2AE0DE731B80FDD9008C308F /* SDKSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0DE721B80FDD9008C308F /* SDKSearchService.swift */; };
 		2AE0DE741B80FDD9008C308F /* SDKSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0DE721B80FDD9008C308F /* SDKSearchService.swift */; };
+		55895CF31BAABA9C000ED66A /* NSJSONSerialization+Additionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55895CF21BAABA9C000ED66A /* NSJSONSerialization+Additionals.swift */; settings = {ASSET_TAGS = (); }; };
+		55895CF41BAABC58000ED66A /* NSJSONSerialization+Additionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55895CF21BAABA9C000ED66A /* NSJSONSerialization+Additionals.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +189,7 @@
 		2AE0DE6C1B80F92E008C308F /* SearchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
 		2AE0DE6F1B80F937008C308F /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		2AE0DE721B80FDD9008C308F /* SDKSearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKSearchService.swift; sourceTree = "<group>"; };
+		55895CF21BAABA9C000ED66A /* NSJSONSerialization+Additionals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSJSONSerialization+Additionals.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +330,7 @@
 				2A26A77A1B6168C20062B9FD /* VerifyError.swift */,
 				2A26A77E1B6168C20062B9FD /* VerifyTask.swift */,
 				2A2DDAFD1B946F36009E4AE9 /* ResponseFactory.swift */,
+				55895CF21BAABA9C000ED66A /* NSJSONSerialization+Additionals.swift */,
 				2ABA3ABE1B6166A800EB4842 /* VerifyIosSdk.h */,
 				2ABA3ABC1B6166A800EB4842 /* Supporting Files */,
 			);
@@ -557,6 +561,7 @@
 		2ABA3AB01B6166A800EB4842 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Nexmo Inc.";
 				TargetAttributes = {
@@ -704,6 +709,7 @@
 				2A26A77F1B6168C20062B9FD /* BaseResponse.swift in Sources */,
 				2A4994CC1B9DFF5E005E313C /* LogoutResponseFactory.swift in Sources */,
 				2ADD5E591B7D10F600650E1B /* LogoutRequest.swift in Sources */,
+				55895CF31BAABA9C000ED66A /* NSJSONSerialization+Additionals.swift in Sources */,
 				2AE0DE701B80F937008C308F /* SearchResponse.swift in Sources */,
 				2A26A78A1B6168C30062B9FD /* HttpResponse.swift in Sources */,
 				2A26A78F1B6168C30062B9FD /* ResponseCode.swift in Sources */,
@@ -751,6 +757,7 @@
 				2A32B2291B6A759200AB5ADB /* BaseResponse.swift in Sources */,
 				2A32B2381B6A759200AB5ADB /* UserStatus.swift in Sources */,
 				2ADD5E5A1B7D118500650E1B /* LogoutRequest.swift in Sources */,
+				55895CF41BAABC58000ED66A /* NSJSONSerialization+Additionals.swift in Sources */,
 				2AE0DE6E1B80F92E008C308F /* SearchRequest.swift in Sources */,
 				2A32B22D1B6A759200AB5ADB /* CheckResponse.swift in Sources */,
 				2A32B2301B6A759200AB5ADB /* HttpRequest.swift in Sources */,

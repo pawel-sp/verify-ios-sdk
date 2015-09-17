@@ -14,7 +14,7 @@ import RequestSigning
 */
 class BaseResponse {
 
-    private static let Log = Logger(toString(ServiceExecutor))
+    private static let Log = Logger(String(ServiceExecutor))
     
     private(set) var signature : String?
     let resultCode : Int
@@ -56,7 +56,7 @@ class BaseResponse {
         if let body = httpResponse.body {
             let error = NSErrorPointer()
             if let messageData = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false),
-                    json = NSJSONSerialization.JSONObjectWithData(messageData, options: NSJSONReadingOptions.allZeros, error: error) as? [String:AnyObject],
+                    json = NSJSONSerialization.JSONObjectWithData(messageData, options: NSJSONReadingOptions(), errorPointer: error) as? [String:AnyObject],
                     resultCode = json[ServiceExecutor.PARAM_RESULT_CODE] as? Int,
                     resultMessage = json[ServiceExecutor.PARAM_RESULT_MESSAGE] as? String,
                     timestamp = json[ServiceExecutor.PARAM_TIMESTAMP] as? String {

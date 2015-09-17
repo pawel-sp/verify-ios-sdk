@@ -23,6 +23,6 @@ protocol ControlService {
         :param: onResponse A callback containing either a valid response or an error if something went wrong.
         Only one of these variables will be nil at a time.
     */
-    func start(#request: ControlRequest,
+    func start(request request: ControlRequest,
                onResponse: (response: ControlResponse?, error: NSError?) -> ())
 }

@@ -14,7 +14,7 @@ import DeviceProperties
 */
 @objc public class VerifyClient : NSObject {
     
-    private static var Log = Logger(toString(VerifyClient))
+    private static var Log = Logger(String(VerifyClient))
     private static var instance : VerifyClient?
     static var PARAM_PIN = "pin"
     static var sharedInstance : VerifyClient {
@@ -78,14 +78,14 @@ import DeviceProperties
         :param: onError callback triggered when some error has occurred, e.g. wrong pin entered
     */
     @objc(getVerifiedUserWithCountryCode:phoneNumber:verifyInProgressBlock:userVerifiedBlock:errorBlock:)
-    public static func getVerifiedUser(#countryCode: String?, phoneNumber: String,
+    public static func getVerifiedUser(countryCode countryCode: String?, phoneNumber: String,
                                         onVerifyInProgress: () -> (),
                                         onUserVerified: () -> (),
                                         onError: (error: VerifyError) -> ()) {
         sharedInstance.getVerifiedUser(countryCode: countryCode, phoneNumber: phoneNumber, onVerifyInProgress: onVerifyInProgress, onUserVerified: onUserVerified, onError: onError)
     }
     
-    func getVerifiedUser(#countryCode: String?, phoneNumber: String,
+    func getVerifiedUser(countryCode countryCode: String?, phoneNumber: String,
                                         onVerifyInProgress: () -> (),
                                         onUserVerified: () -> (),
                                         onError: (error: VerifyError) -> ()) {
@@ -102,7 +102,7 @@ import DeviceProperties
         
         // begin verification process
         self.verifyService.start(request: self.currentVerifyTask!.createVerifyRequest()) { response, error in
-            if let error = error {
+            if let _ = error {
                 onError(error: .INTERNAL_ERROR)
                 return
             }
@@ -160,7 +160,7 @@ import DeviceProperties
         if let verifyTask = currentVerifyTask where verifyTask.userStatus == UserStatus.USER_PENDING {
             checkService.start(request: CheckRequest(verifyTask: verifyTask, pinCode: pinCode),
                 onResponse: { response, error in
-                    if let error = error {
+                    if let _ = error {
                         verifyTask.onError(error: .INTERNAL_ERROR)
                         return
                     }
@@ -253,13 +253,13 @@ import DeviceProperties
                 request completes of fails (with an NSError)
     */
     @objc(logoutUserWithCountryCode:WithNumber:WithBlock:)
-    public static func logoutUser(#countryCode: String?, number: String, completionBlock: (error: NSError?) -> ()) {
+    public static func logoutUser(countryCode countryCode: String?, number: String, completionBlock: (error: NSError?) -> ()) {
         sharedInstance.logoutUser(countryCode: countryCode, number: number, completionBlock: completionBlock)
     }
     
-    func logoutUser(#countryCode: String?, number: String, completionBlock: (error: NSError?) -> ()) {
+    func logoutUser(countryCode countryCode: String?, number: String, completionBlock: (error: NSError?) -> ()) {
 
-        var logoutRequest = LogoutRequest(number: number, countryCode: countryCode)
+        let logoutRequest = LogoutRequest(number: number, countryCode: countryCode)
         self.logoutService.start(request: logoutRequest) { response, error in
             if let error = error {
                 completionBlock(error: error)
@@ -311,11 +311,11 @@ import DeviceProperties
                 completes or fails (with an NSError)
     */
     @objc(getUserStatusWithCountryCode:WithNumber:WithBlock:)
-    public static func getUserStatus(#countryCode: String?, number: String, completionBlock: (status: String?, error: NSError?) -> ()) {
+    public static func getUserStatus(countryCode countryCode: String?, number: String, completionBlock: (status: String?, error: NSError?) -> ()) {
         VerifyClient.sharedInstance.getUserStatus(countryCode: countryCode, number: number, completionBlock: completionBlock)
     }
     
-    func getUserStatus(#countryCode: String?, number: String, completionBlock: (status: String?, error: NSError?) -> ()) {
+    func getUserStatus(countryCode countryCode: String?, number: String, completionBlock: (status: String?, error: NSError?) -> ()) {
         let searchRequest = SearchRequest(number: number, countryCode: countryCode)
         self.searchService.start(request: searchRequest) { response, error in
             if let error = error {

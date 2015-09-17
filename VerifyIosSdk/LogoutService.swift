@@ -23,6 +23,6 @@ protocol LogoutService {
         :param: onResponse A callback containing either a valid response or an error if something went wrong.
         Only one of these variables will be nil at a time.
     */
-    func start(#request: LogoutRequest,
+    func start(request request: LogoutRequest,
                onResponse: (response: LogoutResponse?, error: NSError?) -> ())
 }

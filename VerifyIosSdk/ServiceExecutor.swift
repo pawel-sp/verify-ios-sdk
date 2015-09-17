@@ -92,7 +92,7 @@ class ServiceExecutor {
                           SDK_REVISION : Config.sdkVersion]
     
     /// The current class logger
-    static private let Log = Logger(toString(ServiceExecutor))
+    static private let Log = Logger(String(ServiceExecutor))
     
     private var requestSigner : RequestSigner
     private var deviceProperties : DevicePropertyAccessor
@@ -136,7 +136,7 @@ class ServiceExecutor {
             
             // remove empty values from query parameters
             for (key, value) in params {
-                if (count(value) == 0) {
+                if (value.characters.count == 0) {
                     mutableParams[key] = nil
                 }
             }
@@ -144,7 +144,7 @@ class ServiceExecutor {
             mutableParams = [:]
         }
         
-        var timestamp = "\(Int(timestamp.timeIntervalSince1970))"
+        let timestamp = "\(Int(timestamp.timeIntervalSince1970))"
         if (mutableParams.count != 0) {
             mutableParams[ServiceExecutor.PARAM_APP_ID] = nexmoClient.applicationId
         }
@@ -162,7 +162,7 @@ class ServiceExecutor {
             return nil
         }
         
-        var requestBuilder = HttpRequestBuilder("\(Config.ENDPOINT_PRODUCTION)/\(path)")?
+        let requestBuilder = HttpRequestBuilder("\(Config.ENDPOINT_PRODUCTION)/\(path)")?
                           .setCharset(NSUTF8StringEncoding)
                           .setContentType(HttpRequest.ContentType.TEXT)
                           .setHeaders(ServiceExecutor.headers)
@@ -205,7 +205,7 @@ class ServiceExecutor {
             
             // remove empty values from query parameters
             for (key, value) in params {
-                if (count(value) == 0) {
+                if (value.characters.count == 0) {
                     mutableParams[key] = nil
                 }
             }
@@ -213,7 +213,7 @@ class ServiceExecutor {
             mutableParams = [:]
         }
         
-        var timestampString = "\(Int(timestamp.timeIntervalSince1970))"
+        let timestampString = "\(Int(timestamp.timeIntervalSince1970))"
         if (mutableParams.count != 0) {
             mutableParams[ServiceExecutor.PARAM_APP_ID] = nexmoClient.applicationId
         }
@@ -276,7 +276,7 @@ class ServiceExecutor {
         let error = NSErrorPointer()
         if let body = httpResponse.body,
                 messageData = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false),
-                json = NSJSONSerialization.JSONObjectWithData(messageData, options: NSJSONReadingOptions.allZeros, error: error) as? [String:AnyObject],
+                json = NSJSONSerialization.JSONObjectWithData(messageData, options: NSJSONReadingOptions(), errorPointer: error) as? [String:AnyObject],
                 resultCode = json[ServiceExecutor.PARAM_RESULT_CODE] as? Int {
             return ResponseCode.Code(rawValue: resultCode)
         }
@@ -295,7 +295,7 @@ class ServiceExecutor {
         let error = NSErrorPointer()
         if let body = httpResponse.body,
                 messageData = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false),
-                json = NSJSONSerialization.JSONObjectWithData(messageData, options: NSJSONReadingOptions.allZeros, error: error) as? [String:AnyObject],
+                json = NSJSONSerialization.JSONObjectWithData(messageData, options: NSJSONReadingOptions(), errorPointer: error) as? [String:AnyObject],
                 resultMessage = json[ServiceExecutor.PARAM_RESULT_MESSAGE] as? String {
             return resultMessage
         }
@@ -305,7 +305,7 @@ class ServiceExecutor {
         
     func getToken(nexmoClient: NexmoClient, onResponse: (response: TokenResponse?, error: NSError?) -> ()) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            var params = NSMutableDictionary()
+            let params = NSMutableDictionary()
             if (!self.deviceProperties.addIpAddressToParams(params, withKey: ServiceExecutor.PARAM_SOURCE_IP)) {
                 let error = NSError(domain: "ServiceExecutor", code: 1, userInfo: [NSLocalizedDescriptionKey : "Failed to get ip address!"])
                 ServiceExecutor.Log.error(error.localizedDescription)

@@ -191,6 +191,7 @@
 		2A63D9E51B66550D00E49F42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Nexmo Inc.";
 				TargetAttributes = {
